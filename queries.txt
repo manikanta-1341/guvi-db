@@ -1,0 +1,39 @@
+-- creating tables-- 
+
+create table `student` (id int auto_increment primary key,name varchar(255),email varchar(255) unique,primary key(id));
+create table `task` (id int auto_increment primary key,name varchar(255));
+create table `batch` (id int auto_increment primary key,name varchar(255));
+create table `mentor` (id int auto_increment,name varchar(255),email varchar(255) unique,primary key(id));
+create table `collection` (id int auto_increment primary key, student_id int,mentor_id int,task_id int,batch_id int);
+
+-- inserted data into each table
+-- student-10
+-- task,mentor,batch-6 each
+
+insert into student (name , email) values ("aaa","aaa@gmail.com");
+insert into task (name) values ("task1");
+insert into batch (name) values ("batch1");
+insert into mentor (name , email) values ("mentor1","mentor1@gmail.com");
+
+-- creating foreign keys for collection table
+
+alter table collection add (foreign key(student_id) references student(id));
+alter table collection add (foreign key(mentor_id) references mentor(id));
+alter table collection add (foreign key(task_id) references task(id));
+alter table collection add (foreign key(batch_id) references batch(id));
+
+-- to show all tables
+
+select * from collection;
+select * from task;
+select * from student;
+select * from mentor;
+select * from batch;
+
+-- creating collection data with foreign keys
+
+insert into collection (student_id,mentor_id,task_id,batch_id) values (6,1,2,3) ;
+
+
+
+
